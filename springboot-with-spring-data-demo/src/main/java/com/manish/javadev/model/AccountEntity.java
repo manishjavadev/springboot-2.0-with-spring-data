@@ -13,14 +13,6 @@ import javax.persistence.Table;
 @Table(name = "TBL_ACCOUNT")
 public class AccountEntity implements Serializable {
 
-	public Long getAccountNumber() {
-		return accountNumber;
-	}
-
-	public void setAccountNumber(Long accountNumber) {
-		this.accountNumber = accountNumber;
-	}
-
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -49,6 +41,14 @@ public class AccountEntity implements Serializable {
 		this.accountType = accountType;
 		this.accountHolderName = accountHolderName;
 		this.amount = amount;
+	}
+
+	public Long getAccountNumber() {
+		return accountNumber;
+	}
+
+	public void setAccountNumber(Long accountNumber) {
+		this.accountNumber = accountNumber;
 	}
 
 	public String getAccountType() {

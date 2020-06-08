@@ -2,9 +2,12 @@ package com.manish.javadev.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,29 +37,27 @@ public class AccountController {
 		return "Configuration is working...";
 	}
 
-	@RequestMapping(value = "/account/{accountNumber}", method = RequestMethod.GET)
+	@GetMapping(value = "/account/{accountNumber}")
 	public ResponseEntity<AccountEntity> find(@PathVariable("accountNumber") Long accountNumber) {
-		System.out.println("findAccount called............");
 		AccountEntity accountEntity = accountService.find(new Long(accountNumber));
 		System.out.println("accountEntity  =:" + accountEntity);
 		return new ResponseEntity<AccountEntity>(accountEntity, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/account", method = RequestMethod.POST)
+	@PostMapping(value = "/account")
 	public ResponseEntity<AccountEntity> save(@RequestBody AccountEntity accountEntity) {
 		AccountEntity entity = accountService.save(accountEntity);
 		return new ResponseEntity<AccountEntity>(entity, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/account", method = RequestMethod.PUT)
+	@PutMapping(value = "/account")
 	public ResponseEntity<AccountEntity> update(@RequestBody AccountEntity accountEntity) {
 		AccountEntity entity = accountService.update(accountEntity);
 		return new ResponseEntity<AccountEntity>(entity, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/account/{accountNumber}", method = RequestMethod.DELETE)
+	@DeleteMapping(value = "/account/{accountNumber}")
 	public ResponseEntity<AccountEntity> delete(@PathVariable("accountNumber") Long accountNumber) {
-		System.out.println("findAccount called............");
 		accountService.delete(new Long(accountNumber));
 		return new ResponseEntity<AccountEntity>(HttpStatus.OK);
 	}
